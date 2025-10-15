@@ -25,13 +25,12 @@ import {
   setPageLanguage,
   PATH_PREFIX,
   createSource,
-  getHostname
+  getHostname,
+  getExperimentationCheck
 } from './utils.js';
 
-import {
-  runExperimentation,
-  showExperimentationRail,
-} from './experiment-loader.js';
+// Experimentation functions will be dynamically imported when needed
+// to avoid loading experiment-loader.js when experimentation is disabled
 
 const experimentationConfig = {
   prodHost: 'www.mysite.com', // TODO: change domains for your prodHost.
@@ -234,7 +233,15 @@ async function renderWBDataLayer() {
 async function loadEager(doc) {
   setPageLanguage();
   decorateTemplateAndTheme();
-  await runExperimentation(doc, experimentationConfig);
+  
+  // Check if experimentation is enabled via placeholders before loading
+  const isExperimentationEnabled = await getExperimentationCheck();
+  if (isExperimentationEnabled) {
+    // Dynamically import experimentation module only when needed
+    const { runExperimentation } = await import('./experiment-loader.js');
+    await runExperimentation(doc, experimentationConfig);
+  }
+  
   renderWBDataLayer();
   const main = doc.querySelector('main');
   if (main) {
@@ -315,7 +322,13 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
-  await showExperimentationRail(doc, experimentationConfig);
+  // Check if experimentation is enabled via placeholders before loading
+  const isExperimentationEnabled = await getExperimentationCheck();
+  if (isExperimentationEnabled) {
+    // Dynamically import experimentation module only when needed
+    const { showExperimentationRail } = await import('./experiment-loader.js');
+    await showExperimentationRail(doc, experimentationConfig);
+  }
 }
 
 
