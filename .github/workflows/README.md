@@ -3,7 +3,7 @@
 This repository includes **two workflows** for syncing with the main template repository (`AEMXSC/RefDemoEDS`):
 
 ## 🔄 Workflow 1: Sync with Template (Create PR for Review)
-**File:** `sync-template.yml`
+**File:** `sync-template-using-pr.yml`
 
 Creates a **Pull Request** with template changes for review before merging.
 
