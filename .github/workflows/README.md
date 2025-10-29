@@ -52,7 +52,7 @@ Creates a **Pull Request** with template changes for review before merging.
 This workflow is pre-configured to sync with the main template repository:
 
 ```yaml
-git remote add template https://github.dev/AEMXSC/RefDemoEDS.git
+git remote add template https://github.com/AEMXSC/RefDemoEDS-Dev.git
 ```
 
 If you created this repository using "Use this template" from `AEMXSC/RefDemoEDS`, no configuration changes are needed.
