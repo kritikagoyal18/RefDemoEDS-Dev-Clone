@@ -24,8 +24,8 @@
   border: 1px solid #dadada;
   border-radius: 0;
   padding: 0.5em;
-  background-color: var(--light-color);
-  color: initial;
+  background-color: var(--background-color);
+  color: var(--text-color);
   font-weight: bold;
   line-height: unset;
   text-align: initial;
@@ -42,7 +42,8 @@
 
 .tabs .tabs-list button[aria-selected='true'] {
   border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
+  background-color: var(--light-color);
+  color: var(--text-color);
   cursor: initial;
 }
 
