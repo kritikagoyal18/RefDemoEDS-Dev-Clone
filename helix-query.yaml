@@ -90,7 +90,7 @@ indices:
       - /ja/footer
     target: /ja/query-index.json
     
-  site-ja:
+  site-ar:
     <<: *base-site
     include:
       - '/ar'
