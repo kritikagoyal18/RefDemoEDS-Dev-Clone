@@ -360,14 +360,6 @@
         "name": "container",
         "valueType": "string",
         "collapsible": true,
-        "condition": {
-          "==": [
-            {
-              "var": "style"
-            },
-            "bg-image"
-          ]
-        },
         "fields": [
           {
             "component": "reference",
