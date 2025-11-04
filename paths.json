@@ -18,5 +18,13 @@
   "includes": [
     "/content/kritika-rd-dev/",
     "/content/dam/kritika-rd-dev/"
-  ]
+  ],
+  "public": {
+    "paths": {
+      "mappings": [
+        "/content/kritika-rd-dev/language-masters/en:/",
+        "/content/dam/kritika-rd-dev/en/fragments/promotions/:/promotions/"
+      ]
+    }
+  }
 }
