@@ -13,18 +13,22 @@
     "/content/kritika-rd-dev/configuration:/.helix/config.json",
     "/content/kritika-rd-dev/metadata:/metadata.json",
     "/content/kritika-rd-dev/redirects:/redirects.json",
-    "/content/kritika-rd-dev/placeholders:/placeholders.json"
+    "/content/kritika-rd-dev/placeholders:/placeholders.json",
+    "/content/dam/kritika-rd-dev/en/fragments/promotions/:/promotions/"
   ],
   "includes": [
     "/content/kritika-rd-dev/",
     "/content/dam/kritika-rd-dev/"
   ],
-  "public": {
-    "paths": {
-      "mappings": [
-        "/content/kritika-rd-dev/language-masters/en:/",
-        "/content/dam/kritika-rd-dev/en/fragments/promotions/:/promotions/"
-      ]
-    }
+  "content": {
+    "source": {
+      "url": "https://author-p159983-e1710854.adobeaemcloud.com/bin/franklin.delivery/kritikagoyal18/kritika-rd-dev/main",
+      "type": "markup",
+      "suffix": ".html"
+    },
+    "overlay": {
+      "url": "https://json2html.adobeaem.workers.dev/kritikagoyal18/kritika-rd-dev/main",
+      "type": "markup"
+    },
   }
 }
