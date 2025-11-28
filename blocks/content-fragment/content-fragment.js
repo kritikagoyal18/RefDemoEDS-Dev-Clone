@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { isAuthorEnvironment, moveInstrumentation } from '../../scripts/scripts.js';
-import { getHostname } from '../../scripts/utils.js';
+import { getHostname, mapAemPathToSitePath } from '../../scripts/utils.js';
 import { readBlockConfig } from '../../scripts/aem.js';
 
 /**
@@ -155,6 +155,26 @@ export default async function decorate(block) {
             } else {
               ctaHref = publishUrl || (pathOnly ? `${aempublishurl || ''}${pathOnly}` : '#');
             }
+          }
+        }
+
+        // On live (not author) prefer site-relative paths based on paths.json mappings
+        if (!isAuthor) {
+          try {
+            let candidatePath = '';
+            if (/^https?:\/\//i.test(ctaHref)) {
+              const u = new URL(ctaHref);
+              candidatePath = u.pathname;
+            } else {
+              candidatePath = ctaHref;
+            }
+            if (candidatePath.startsWith('/content/')) {
+              const mapped = await mapAemPathToSitePath(candidatePath);
+              if (mapped) ctaHref = mapped;
+            }
+          } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn('CTA path mapping failed', e);
           }
         }
 
